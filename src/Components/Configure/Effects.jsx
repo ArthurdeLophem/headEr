@@ -15,13 +15,13 @@ export const Effects = () => {
 
     return (
         <EffectsComposer
-            multisamping={8}
+            multisamping={2}
             renderIndex={1}
             disableGamma
             disableRenderPass
         >
             <renderPass attachArray="passes" scene={scene} camera={camera} />
-            <unrealBloomPass attachArray="passes" args={[aspect, 0.4, 1, 0]} />
+            <unrealBloomPass attachArray="passes" args={[aspect, 0.1, 0.5, 0]} />
         </EffectsComposer>
     );
 };

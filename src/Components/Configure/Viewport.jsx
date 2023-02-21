@@ -14,7 +14,7 @@ export default function ProductListing() {
                 position: [- 4, 3, 6]
             }}>
             <ambientLight />
-            <Effects />
+            {/* <Effects /> */}
             <pointLight position={[10, 10, 10]} />
             <Model />
             <color args={['#000000']} attach="background" />
