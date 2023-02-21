@@ -10,4 +10,8 @@
     .listingContainer {
         @apply bg-black text-white h-productListing w-productListing
     }
+
+    .viewport {
+        @apply w-screen h-screen
+    }
 }
