@@ -1,15 +1,13 @@
 import { OrbitControls, Environment, Lightformer } from '@react-three/drei';
 import { Perf } from 'r3f-perf';
+import Headset from './Headset';
 
 export default function Model() {
     return <>
         <Perf />
         <OrbitControls makeDefault />;
 
-        <mesh position-x={- 2} castShadow >
-            <sphereGeometry />
-            <meshStandardMaterial color="white" />
-        </mesh>
+        <Headset />
 
         {/* <Environment
             background
