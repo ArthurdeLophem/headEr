@@ -1,0 +1,13 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+    .primaryBtn {
+        @apply bg-black text-white p-4 rounded-md font-bold
+    }
+
+    .listingContainer {
+        @apply bg-black text-white h-productListing w-productListing
+    }
+}
