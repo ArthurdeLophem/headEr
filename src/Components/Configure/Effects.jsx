@@ -1,27 +1,14 @@
-import * as THREE from 'three';
-import React, { useMemo } from 'react';
-import { Effects as EffectsComposer } from '@react-three/drei';
-import { extend, useThree } from '@react-three/fiber';
-import { UnrealBloomPass } from 'three-stdlib';
+import { useLoader } from '@react-three/fiber'
+import { EffectComposer, SSR, Bloom, LUT } from '@react-three/postprocessing'
+import { LUTCubeLoader } from 'postprocessing'
 
-extend({ UnrealBloomPass });
-
-export const Effects = () => {
-    const { size, scene, camera } = useThree();
-    const aspect = useMemo(
-        () => new THREE.Vector2(size.width, size.height),
-        [size]
-    );
-
+export const Effects = (...props) => {
+    const texture = useLoader(LUTCubeLoader, '/assets/models/cube.cube')
     return (
-        <EffectsComposer
-            multisamping={2}
-            renderIndex={1}
-            disableGamma
-            disableRenderPass
-        >
-            <renderPass attachArray="passes" scene={scene} camera={camera} />
-            <unrealBloomPass attachArray="passes" args={[aspect, 0.1, 0.5, 0]} />
-        </EffectsComposer>
-    );
-};
+        <EffectComposer disableNormalPass>
+            <SSR {...props} />
+            <Bloom luminanceThreshold={0.211} mipmapBlur luminanceSmoothing={0} intensity={1.25} />
+            <LUT lut={texture} />
+        </EffectComposer>
+    )
+}
