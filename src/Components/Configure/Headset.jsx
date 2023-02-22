@@ -13,55 +13,58 @@ export default function Headset(props) {
   return (
     <group  {...props} dispose={null} position={[0, 1, 0]} rotation={[-1.5, 0, 0]} >
 
-
       {/* the Drivers */}
-      <mesh castShadow geometry={nodes.Circle.geometry} material={materials.blackplastic} position={[0.94, -1.08, 0]} rotation={[0, 0, 1.08]} />
-      <mesh geometry={nodes.Circle005.geometry} position={[0.93, -1.03, 0]} rotation={[0, 0, 1.08]} />
-      <mesh geometry={nodes.Plane002.geometry} material={materials.pattern} position={[1.29, -1.27, 0]} rotation={[0, 0, 1.08]} />
-
-      {/* cushions */}
-      <mesh geometry={nodes.Circle008.geometry} material={materials.leatherblack} position={[0.94, -1.08, 0]} rotation={[0, 0, 1.08]} />
-      <group position={[0.6, -1.53, -0.69]} rotation={[-Math.PI / 2, -1.08, 0]}>
-        <mesh geometry={nodes.Circle011.geometry} material={materials.red_ears} />
-        <mesh geometry={nodes.Circle011_1.geometry} material={materials.black_ears} />
+      <group>
+        <mesh castShadow geometry={nodes.Circle.geometry} material={materials.blackplastic} position={[0.94, -1.08, 0]} rotation={[0, 0, 1.08]} />
+        <mesh geometry={nodes.Circle005.geometry} position={[0.93, -1.03, 0]} rotation={[0, 0, 1.08]} />
+        <mesh geometry={nodes.Plane002.geometry} material={materials.pattern} position={[1.29, -1.27, 0]} rotation={[0, 0, 1.08]} />
       </group>
 
+      {/* cushions */}
+      <group>
+        <mesh geometry={nodes.Circle008.geometry} material={materials.leatherblack} position={[0.94, -1.08, 0]} rotation={[0, 0, 1.08]} />
+        <group position={[0.6, -1.53, -0.69]} rotation={[-Math.PI / 2, -1.08, 0]}>
+          <mesh geometry={nodes.Circle011.geometry} material={materials.red_ears} />
+          <mesh geometry={nodes.Circle011_1.geometry} material={materials.black_ears} />
+        </group>
+      </group>
 
       {/* backPlate Sockets */}
       <mesh geometry={nodes.Circle004.geometry} material={materials.blackplastic} position={[0.94, -1.08, 0]} rotation={[0, 0, 1.08]} />
 
-
       {/* headbands */}
       <mesh geometry={nodes.BezierCurve.geometry} material={materials.blackplastic} position={[0.09, 0, 0.17]} />
 
-
       {/* headrest */}
-      <mesh geometry={nodes.Circle006.geometry} material={materials.blackplastic} position={[1.92, 0.09, -0.01]} />
-      <mesh geometry={nodes.Circle007.geometry} material={materials.blackplastic} position={[1.74, 0.11, -0.01]} rotation={[0, 0, 0.58]} />
-      <mesh geometry={nodes.BezierCurve001.geometry} material={materials.aluminium} position={[1.92, 0.1, -0.01]} />
-      <group position={[1.56, 0.39, -0.01]} rotation={[-Math.PI / 2, 0, 0]}>
-        <mesh geometry={nodes.BezierCurve002_1.geometry} material={materials.leatherblack1} />
-        <mesh geometry={nodes.BezierCurve002_2.geometry} material={materials.leatherblack2} />
+      <group>
+        <mesh geometry={nodes.Circle006.geometry} material={materials.blackplastic} position={[1.92, 0.09, -0.01]} />
+        <mesh geometry={nodes.Circle007.geometry} material={materials.blackplastic} position={[1.74, 0.11, -0.01]} rotation={[0, 0, 0.58]} />
+        <mesh geometry={nodes.BezierCurve001.geometry} material={materials.aluminium} position={[1.92, 0.1, -0.01]} />
+        <group position={[1.56, 0.39, -0.01]} rotation={[-Math.PI / 2, 0, 0]}>
+          <mesh geometry={nodes.BezierCurve002_1.geometry} material={materials.leatherblack1} />
+          <mesh geometry={nodes.BezierCurve002_2.geometry} material={materials.leatherblack2} />
+        </group>
       </group>
-
 
       {/* microphone */}
-      <mesh geometry={nodes.Plane.geometry} material={materials.blackplastic} position={[0.81, -1.55, 0.8]} rotation={[Math.PI / 2, 0, 0]} /> */}
-      <mesh geometry={nodes.BezierCurve004.geometry} material={materials.microphone2} position={[0.81, -1.57, 0.85]} />
-      <group position={[-0.12, -1.89, 1.44]} rotation={[0, 0, -Math.PI / 2]}>
-        <mesh geometry={nodes.Circle014.geometry} material={materials.blackplastic} />
-        <mesh geometry={nodes.Circle014_1.geometry} material={materials.Material1} />
+      <group>
+        <mesh geometry={nodes.Plane.geometry} material={materials.blackplastic} position={[0.81, -1.55, 0.8]} rotation={[Math.PI / 2, 0, 0]} />
+        <mesh geometry={nodes.BezierCurve004.geometry} material={materials.microphone2} position={[0.81, -1.57, 0.85]} />
+        <group position={[-0.12, -1.89, 1.44]} rotation={[0, 0, -Math.PI / 2]}>
+          <mesh geometry={nodes.Circle014.geometry} material={materials.blackplastic} />
+          <mesh geometry={nodes.Circle014_1.geometry} material={materials.Material1} />
+        </group>
       </group>
 
-
       {/* bolts */}
-      <mesh geometry={nodes.Bolt.geometry} material={materials.aluminium} position={[1.79, -0.28, -0.1]} rotation={[0, 0, 1.31]} />
-      <mesh geometry={nodes.Bolt001.geometry} material={materials.aluminium} position={[1.8, -0.23, 0.1]} rotation={[0, 0, 1.31]} />
-      <mesh geometry={nodes.Bolt002.geometry} material={materials.aluminium} position={[1.84, 0.01, 0.1]} rotation={[0, 0, 1.53]} />
-      <mesh geometry={nodes.Bolt003.geometry} material={materials.aluminium} position={[1.84, 0.01, -0.1]} rotation={[0, 0, 1.53]} />
-      <mesh geometry={nodes.Bolt004.geometry} material={materials.aluminium} position={[1.57, 0.27, 0.07]} rotation={[0, 0, 2.13]} />
-      <mesh geometry={nodes.Bolt005.geometry} material={materials.aluminium} position={[1.57, 0.27, -0.09]} rotation={[0, 0, 2.13]} />
-
+      <group>
+        <mesh geometry={nodes.Bolt.geometry} material={materials.aluminium} position={[1.79, -0.28, -0.1]} rotation={[0, 0, 1.31]} />
+        <mesh geometry={nodes.Bolt001.geometry} material={materials.aluminium} position={[1.8, -0.23, 0.1]} rotation={[0, 0, 1.31]} />
+        <mesh geometry={nodes.Bolt002.geometry} material={materials.aluminium} position={[1.84, 0.01, 0.1]} rotation={[0, 0, 1.53]} />
+        <mesh geometry={nodes.Bolt003.geometry} material={materials.aluminium} position={[1.84, 0.01, -0.1]} rotation={[0, 0, 1.53]} />
+        <mesh geometry={nodes.Bolt004.geometry} material={materials.aluminium} position={[1.57, 0.27, 0.07]} rotation={[0, 0, 2.13]} />
+        <mesh geometry={nodes.Bolt005.geometry} material={materials.aluminium} position={[1.57, 0.27, -0.09]} rotation={[0, 0, 2.13]} />
+      </group>
 
     </group>
   )

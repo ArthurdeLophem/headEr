@@ -6,7 +6,7 @@ export const Effects = (...props) => {
     const texture = useLoader(LUTCubeLoader, '/assets/models/cube.cube')
     return (
         <EffectComposer disableNormalPass>
-            <SSR {...props} />
+            {/* <SSR {...props} /> */}
             <Bloom luminanceThreshold={0.211} mipmapBlur luminanceSmoothing={0} intensity={1.25} />
             <LUT lut={texture} />
         </EffectComposer>
