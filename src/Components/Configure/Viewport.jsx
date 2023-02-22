@@ -1,23 +1,49 @@
 import { Canvas } from '@react-three/fiber'
+import { RGBELoader } from 'three-stdlib'
 import { Effects } from './Effects';
-import Model from './Model';
+import {
+    Center,
+    Environment,
+    Lightformer,
+    OrbitControls,
+    RandomizedLight,
+    AccumulativeShadows,
+    ContactShadows,
+} from '@react-three/drei'
+import { Perf } from 'r3f-perf';
+import Headset from './Headset';
+import Lights from './Lights';
 
 export default function ProductListing() {
+
+
     return <>
-        <Canvas className="viewport"
-            flat
-            shadows
-            camera={{
-                fov: 45,
-                near: 0.1,
-                far: 200,
-                position: [- 4, 3, 6]
-            }}>
-            <ambientLight />
-            {/* <Effects /> */}
-            <pointLight position={[10, 10, 10]} />
-            <Model />
-            <color args={['#000000']} attach="background" />
+        <Canvas className='viewport' camera={{ position: [10, 20, 20], zoom: 8 }} gl={{ preserveDrawingBuffer: true }}>
+            <Perf deepAnalyze={true} overClock={true} matrixUpdate={true} position={"top-left"} />
+            <color attach="background" args={['#2c2c33']} />
+
+            <Effects />
+            <OrbitControls
+                zoomSpeed={0.25}
+                minZoom={2}
+                maxZoom={250}
+                enablePan={true}
+                enableDamping={true}
+                dampingFactor={0.1}
+                minPolarAngle={Math.PI / 3}
+                maxPolarAngle={Math.PI / 3}
+                autoRotate={true}
+            />
+
+            <Center>
+                <mesh scale={6} rotation={[-Math.PI / 2, 0, Math.PI / 2.5]}>
+                    <ringGeometry args={[0.95, 1.1, 4]} />
+                    <meshStandardMaterial color="red" roughness={0} />
+                </mesh>
+            </Center>
+
+            <Headset />
+            <Lights />
         </Canvas>
     </>
 }
