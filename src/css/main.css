@@ -7,8 +7,8 @@
         @apply bg-black text-white p-4 rounded-md font-bold
     }
 
-    .listingContainer {
-        @apply bg-black text-white h-productListing w-productListing
+    .panel {
+        @apply bg-black text-white absolute right-8 h-productListing w-productListing px-8 py-4
     }
 
     .viewport {
