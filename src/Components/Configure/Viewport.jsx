@@ -1,7 +1,7 @@
 import { Canvas } from '@react-three/fiber'
 import { RGBELoader } from 'three-stdlib'
 import { Effects } from './Effects';
-import { Center, OrbitControls, } from '@react-three/drei'
+import { Center, OrbitControls, ContactShadows } from '@react-three/drei'
 import { Perf } from 'r3f-perf';
 import Headset from './Headset';
 import Lights from './Lights';
@@ -50,6 +50,7 @@ export default function Viewport() {
 
             <Suspense>
                 <Headset chooseColor={chooseColor} chooseActiveEl={chooseActiveEl} />
+                <ContactShadows resolution={1024} frames={1} position={[0, -1.16, 0]} scale={15} blur={0.5} opacity={1} far={20} />
             </Suspense>
             <Lights />
         </Canvas>

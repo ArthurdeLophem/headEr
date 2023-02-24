@@ -1,8 +1,4 @@
-import {
-    Environment,
-    Lightformer,
-    ContactShadows,
-} from '@react-three/drei'
+import { Environment, Lightformer, } from '@react-three/drei'
 
 export default function Lights() {
 
@@ -22,7 +18,6 @@ export default function Lights() {
                 {/* Key */}
                 <Lightformer form="ring" color="red" intensity={10} scale={2} position={[10, 5, 10]} onUpdate={(self) => self.lookAt(0, 0, 0)} />
             </Environment>
-            <ContactShadows resolution={1024} frames={1} position={[0, -1.16, 0]} scale={15} blur={0.5} opacity={1} far={20} />
         </group >
 
 
