@@ -2,13 +2,17 @@
 @tailwind components;
 @tailwind utilities;
 
+.picker {
+    width: 80% !important;
+}
+
 @layer base {
     .primaryBtn {
         @apply bg-black text-white p-4 rounded-md font-bold
     }
 
     .panel {
-        @apply bg-black text-white absolute right-8 h-productListing w-productListing px-8 py-4
+        @apply bg-black text-white absolute right-8 h-fit rounded-lg w-productListing px-8 py-4 flex flex-col items-center gap-14
     }
 
     .viewport {

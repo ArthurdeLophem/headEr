@@ -21,8 +21,10 @@ export default function Headset(props) {
 
   const handleIncome = (e) => {
     if (colorCustomizables.includes(e.object.material.name)) {
-      if (e.object.material.name) props.chooseActiveEl("rgb")
-      props.chooseActiveEl(e.object.material.name)
+      if (e.object.material.name == "pattern") props.chooseActiveEl("rgb")
+      else {
+        props.chooseActiveEl(e.object.material.name)
+      }
     } else { props.chooseActiveEl("hidden") }
     e.stopPropagation()
   }
