@@ -23,7 +23,7 @@ export default function Viewport() {
     }
 
     return <>
-        <Canvas className='viewport' camera={{ position: [10, 20, 20], zoom: 6.5 }} gl={{ preserveDrawingBuffer: true }}>
+        <Canvas className='viewport' dpr={1} camera={{ position: [10, 20, 20], zoom: 6.5 }} gl={{ preserveDrawingBuffer: true }}>
             <Perf deepAnalyze={true} overClock={true} matrixUpdate={true} position={"top-left"} />
             <color attach="background" args={['#2c2c33']} />
 
