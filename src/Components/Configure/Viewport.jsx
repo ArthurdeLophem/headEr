@@ -12,6 +12,11 @@ import * as THREE from 'three'
 export default function Viewport() {
     const [color, setColor] = useState("");
     const [activeEl, setActiveEl] = useState("hidden");
+    const [title, setTitle] = useState("hover over a headphone part to start");
+
+    const chooseTitle = (e) => {
+        setTitle(e)
+    }
 
     const chooseColor = (e) => {
         setColor(`rgb(${e.r}, ${e.g}, ${e.b})`)
@@ -48,12 +53,13 @@ export default function Viewport() {
             </Center>
 
             <Suspense>
-                <Headset color={color} activeEl={activeEl} chooseColor={chooseColor} chooseActiveEl={chooseActiveEl} />
+                <Headset chooseTitle={chooseTitle} color={color} activeEl={activeEl} chooseColor={chooseColor} chooseActiveEl={chooseActiveEl} />
                 <ContactShadows resolution={1024} frames={1} position={[0, -1.16, 0]} scale={15} blur={0.5} opacity={1} far={20} />
             </Suspense>
             <Lights />
         </Canvas>
 
+        <h1 className="title">{title}</h1>
         <CustomizePanel color={color} activeEl={activeEl} chooseColor={chooseColor} chooseActiveEl={chooseActiveEl} />
     </>
 }

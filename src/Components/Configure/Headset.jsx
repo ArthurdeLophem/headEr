@@ -40,12 +40,29 @@ export default function Headset(props) {
     }
     e.stopPropagation()
   }
+
+  const handleHover = (e) => {
+    if (colorCustomizables.find((el) => el.name === e.object.material.name)) {
+      props.chooseTitle(`customize your ${e.object.material.name}`)
+    }
+  }
+
+  const handleOut = () => {
+    if (props.activeEl === "hidden")
+      props.chooseTitle(`hover over a headphone part to start`)
+    else
+      props.chooseTitle(`customize your ${props.activeEl}`)
+
+  }
+
   const handleMissed = () => {
     props.chooseActiveEl("hidden")
+    props.chooseTitle(`hover over a headphone part to start`)
   }
 
   return (
     <group  {...props} dispose={null}
+      onPointerOver={handleHover} onPointerOut={handleOut}
       onClick={handleIncome} onPointerMissed={handleMissed}
       position={[0, 1, 0]} rotation={[-1.5, 0, 0]} >
 
