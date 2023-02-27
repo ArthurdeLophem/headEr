@@ -33,6 +33,12 @@ export default function CustomizePanel(props) {
 
             {drivers && (
                 <div className="flex flex-col items-center gap-8 mb-4">
+                    <div className="flex flex-col items-center gap-8 mb-4">
+                        <div className="flex gap-4">
+                            <label for="scales">microphone</label>
+                            <input type="checkbox" id="scales" name="scales" />
+                        </div>
+                    </div>
                     <div className="flex gap-4">
                         <label htmlFor="company_pic">Choose file to upload</label>
                         <input onChange={handleImage}
@@ -44,6 +50,7 @@ export default function CustomizePanel(props) {
                     </div>
                     {props.companyPic !== null && (<img src={props.companyPic} alt="" />)}
                 </div>
+
             )}
         </div>
     </>

@@ -93,12 +93,7 @@ export default function Headset(props) {
         {/* drivers */}
         <group>
 
-          {/* {props.companyPic !== null && (<Sticker url={props.companyPic} position={[-2, 1.3, 0.55]} rotation={Math.PI * 1.2} scale={0.45} />)} */}
           <mesh castShadow receiveShadow geometry={nodes.Circle.geometry} material={materials.drivers} material-color={colorCustomizables[4].color} position={[0.94, -1.08, 0]} rotation={[0, 0, 1.08]} />
-
-          {/* <Sticker url="/assets/react.svg" position={[0, -0.67, 0]} rotation-x={Math.PI * 0.5} scale={0.45} />
-          <Sticker url="/assets/react.svg" position={[-1.5, 1.9, 0]} rotation={[Math.PI * 1.9, Math.PI * 1.4, Math.PI * 1.9]} scale={0.45} /> */}
-
           <mesh geometry={nodes.Circle005.geometry} material={materials.rgb} material-color={colorCustomizables[8].color} position={[0.93, -1.03, 0]} rotation={[0, 0, 1.08]} />
           <mesh geometry={nodes.Plane002.geometry} material={materials.pattern} position={[1.29, -1.27, 0]} rotation={[0, 0, 1.08]} />
 
@@ -110,7 +105,7 @@ export default function Headset(props) {
           </group>
 
           {/* microphone */}
-          <group>
+          <group visible={false}>
             <mesh geometry={nodes.Plane.geometry} material={materials.micplastic} position={[0.81, -1.55, 0.8]} rotation={[Math.PI / 2, 0, 0]} />
             <mesh geometry={nodes.BezierCurve004.geometry} material={materials.microphone2} position={[0.81, -1.57, 0.85]} />
             <group position={[-0.12, -1.89, 1.44]} rotation={[0, 0, -Math.PI / 2]}>

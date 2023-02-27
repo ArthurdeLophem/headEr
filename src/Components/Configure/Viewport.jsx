@@ -7,7 +7,6 @@ import Headset from './Headset';
 import Lights from './Lights';
 import { Suspense, useState } from 'react';
 import CustomizePanel from './CustomizePanel';
-import * as THREE from 'three'
 
 export default function Viewport() {
 
