@@ -1,17 +1,13 @@
 import { RgbaColorPicker } from "react-colorful";
-import { useRef, useEffect, useState } from 'react';
 
 export default function CustomizePanel(props) {
-    const img = useRef()
-    const [compimg, setCompimg] = useState(null);
-
     const handleImage = (e) => {
         const files = e.target.files[0];
         if (files) {
             const fileReader = new FileReader();
             fileReader.readAsDataURL(files);
             fileReader.addEventListener("load", function () {
-                setCompimg(`${this.result}`)
+                props.chooseCompanyPic(`${this.result}`)
             });
         }
     }
@@ -46,11 +42,9 @@ export default function CustomizePanel(props) {
                             name="company_pic"
                             accept=".jpg, .jpeg, .png, svg" />
                     </div>
-                    {compimg !== null && (<img src={compimg} alt="" />)}
+                    {props.companyPic !== null && (<img src={props.companyPic} alt="" />)}
                 </div>
             )}
-
         </div>
-
     </>
 }

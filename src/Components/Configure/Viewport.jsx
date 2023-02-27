@@ -10,20 +10,25 @@ import CustomizePanel from './CustomizePanel';
 import * as THREE from 'three'
 
 export default function Viewport() {
+
+    //props
     const [color, setColor] = useState("");
     const [activeEl, setActiveEl] = useState("hidden");
     const [title, setTitle] = useState("hover over a headphone part to start");
+    const [companyPic, setCompanyPic] = useState(null);
 
+    //props handling
     const chooseTitle = (e) => {
         setTitle(e)
     }
-
     const chooseColor = (e) => {
         setColor(`rgb(${e.r}, ${e.g}, ${e.b})`)
     }
-
     const chooseActiveEl = (newActive) => {
         setActiveEl(newActive)
+    }
+    const chooseCompanyPic = (newPicture) => {
+        setCompanyPic(newPicture)
     }
 
     return <>
@@ -43,6 +48,7 @@ export default function Viewport() {
                 maxPolarAngle={Math.PI / 3}
                 autoRotate={true}
                 autoRotateSpeed={1}
+                makeDefault
             />
 
             <Center>
@@ -53,13 +59,13 @@ export default function Viewport() {
             </Center>
 
             <Suspense>
-                <Headset chooseTitle={chooseTitle} color={color} activeEl={activeEl} chooseColor={chooseColor} chooseActiveEl={chooseActiveEl} />
+                <Headset companyPic={companyPic} chooseTitle={chooseTitle} color={color} activeEl={activeEl} chooseColor={chooseColor} chooseActiveEl={chooseActiveEl} chooseCompanyPic={chooseCompanyPic} />
                 <ContactShadows resolution={1024} frames={1} position={[0, -1.16, 0]} scale={15} blur={0.5} opacity={1} far={20} />
             </Suspense>
             <Lights />
         </Canvas>
 
         <h1 className="title">{title}</h1>
-        <CustomizePanel color={color} activeEl={activeEl} chooseColor={chooseColor} chooseActiveEl={chooseActiveEl} />
+        <CustomizePanel companyPic={companyPic} color={color} activeEl={activeEl} chooseColor={chooseColor} chooseActiveEl={chooseActiveEl} chooseCompanyPic={chooseCompanyPic} />
     </>
 }
