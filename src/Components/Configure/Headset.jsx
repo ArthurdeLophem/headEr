@@ -7,17 +7,6 @@ import { useControls } from 'leva'
 import * as THREE from 'three'
 
 export default function Headset(props) {
-  const { position, rotation } = useControls({
-    rotation: {
-      value: { x: 0, y: 5.3, z: 1 },
-      step: 0.01
-    },
-    position: {
-      value: { x: -1.3, y: 1, z: 1.5 },
-      step: 0.01
-    }
-  })
-
   const { nodes, materials } = useGLTF('/assets/models/Headset.glb')
   const colorCustomizables = [
     { name: "metalics", color: "" },
