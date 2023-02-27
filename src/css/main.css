@@ -22,4 +22,8 @@
     .title {
         @apply absolute top-3 right-3 text-white font-bold text-4xl uppercase
     }
+
+    img {
+        @apply w-24 h-24
+    }
 }
