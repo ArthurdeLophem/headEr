@@ -7,19 +7,18 @@ import Headset from './Headset';
 import Lights from './Lights';
 import { Suspense, useState } from 'react';
 import CustomizePanel from './CustomizePanel';
+import * as THREE from 'three'
 
 export default function Viewport() {
-    const [color, setColor] = useState(null);
+    const [color, setColor] = useState("");
     const [activeEl, setActiveEl] = useState("hidden");
 
-    const chooseColor = (newColor) => {
-        setColor(newColor)
-        console.log(color)
+    const chooseColor = (e) => {
+        setColor(`rgb(${e.r}, ${e.g}, ${e.b})`)
     }
 
     const chooseActiveEl = (newActive) => {
         setActiveEl(newActive)
-        console.log(activeEl)
     }
 
     return <>
@@ -49,12 +48,12 @@ export default function Viewport() {
             </Center>
 
             <Suspense>
-                <Headset chooseColor={chooseColor} chooseActiveEl={chooseActiveEl} />
+                <Headset color={color} activeEl={activeEl} chooseColor={chooseColor} chooseActiveEl={chooseActiveEl} />
                 <ContactShadows resolution={1024} frames={1} position={[0, -1.16, 0]} scale={15} blur={0.5} opacity={1} far={20} />
             </Suspense>
             <Lights />
         </Canvas>
 
-        <CustomizePanel activeEl={activeEl} chooseColor={chooseColor} chooseActiveEl={chooseActiveEl} />
+        <CustomizePanel color={color} activeEl={activeEl} chooseColor={chooseColor} chooseActiveEl={chooseActiveEl} />
     </>
 }

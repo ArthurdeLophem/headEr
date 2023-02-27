@@ -1,4 +1,4 @@
-import { HexColorPicker } from "react-colorful";
+import { RgbaColorPicker } from "react-colorful";
 
 export default function CustomizePanel(props) {
     const handleOut = () => {
@@ -10,7 +10,7 @@ export default function CustomizePanel(props) {
                 <p>choose your {props.activeEl} color:</p>
                 <p onClick={handleOut} className=" font-bold cursor-pointer">X</p>
             </div>
-            <HexColorPicker className="picker mb-5" />
+            <RgbaColorPicker onChange={props.chooseColor} className="picker mb-5" />
         </div>
     </>
-} 
+}
