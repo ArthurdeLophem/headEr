@@ -1,7 +1,9 @@
 import { RgbaColorPicker } from "react-colorful";
+import { useHeadphoneStore } from './HFStore';
 
 export default function CustomizePanel(props) {
     let drivers = false
+    const hfStore = useHeadphoneStore();
 
     const handleImage = (e) => {
         const files = e.target.files[0];
@@ -9,39 +11,39 @@ export default function CustomizePanel(props) {
             const fileReader = new FileReader();
             fileReader.readAsDataURL(files);
             fileReader.addEventListener("load", function () {
-                props.chooseCompanyPic(`${this.result}`)
+                hfStore.chooseCompanyPic(`${this.result}`)
             });
         }
     }
 
     const handleOut = () => {
-        props.chooseActiveEl("hidden")
+        hfStore.chooseActiveEl("hidden")
     }
 
     const handleMic = (e) => {
-        props.chooseMicState(e.target.checked)
+        hfStore.chooseMic(e.target.checked)
     }
 
-    if (props.activeEl == "drivers") {
+    if (hfStore.ActiveEl == "drivers") {
         drivers = true
     } else {
         drivers = false
     }
 
     return <>
-        <div className={`panel ${props.activeEl}`}>
+        <div className={`panel ${hfStore.ActiveEl}`}>
             <div className={`w-full flex justify-between`}>
-                <p>choose your {props.activeEl} color:</p>
+                <p>choose your {hfStore.ActiveEl} color:</p>
                 <p onClick={handleOut} className=" font-bold cursor-pointer">X</p>
             </div>
-            <RgbaColorPicker onChange={props.chooseColor} className="picker mb-5" />
+            <RgbaColorPicker onChange={hfStore.chooseColor} className="picker mb-5" />
 
             {drivers && (
                 <div className="flex flex-col items-center gap-8 mb-4">
                     <div className="flex flex-col items-center gap-8 mb-4">
                         <div className="flex gap-4">
                             <label htmlFor="scales">microphone</label>
-                            <input type="checkbox" onChange={handleMic} checked={props.mic} id="scales" name="scales" />
+                            <input type="checkbox" onChange={handleMic} checked={hfStore.Mic} id="scales" name="scales" />
                         </div>
                     </div>
                     <div className="flex gap-4">
@@ -53,7 +55,7 @@ export default function CustomizePanel(props) {
                             name="company_pic"
                             accept=".jpg, .jpeg, .png, svg" />
                     </div>
-                    {props.companyPic !== null && (<img className="w-24 h-24" src={props.companyPic} alt="custom company logo" />)}
+                    {hfStore.CompanyPic !== null && (<img className="w-24 h-24" src={hfStore.CompanyPic} alt="custom company logo" />)}
                 </div>
             )}
         </div>
