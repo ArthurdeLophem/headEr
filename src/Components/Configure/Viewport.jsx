@@ -8,7 +8,6 @@ import { Suspense, useState } from 'react';
 import CustomizePanel from './CustomizePanel';
 
 export default function Viewport() {
-
     //props
     const [color, setColor] = useState("");
     const [activeEl, setActiveEl] = useState("hidden");
