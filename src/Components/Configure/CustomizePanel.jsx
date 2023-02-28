@@ -16,6 +16,10 @@ export default function CustomizePanel(props) {
         props.chooseActiveEl("hidden")
     }
 
+    const handleMic = (e) => {
+        props.chooseMicState(e.target.checked)
+    }
+
     let drivers = false
     if (props.activeEl == "drivers") {
         drivers = true
@@ -36,7 +40,7 @@ export default function CustomizePanel(props) {
                     <div className="flex flex-col items-center gap-8 mb-4">
                         <div className="flex gap-4">
                             <label for="scales">microphone</label>
-                            <input type="checkbox" id="scales" name="scales" />
+                            <input type="checkbox" onChange={handleMic} checked={props.mic} id="scales" name="scales" />
                         </div>
                     </div>
                     <div className="flex gap-4">

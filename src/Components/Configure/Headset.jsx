@@ -19,6 +19,7 @@ export default function Headset(props) {
     { name: "fixers", color: "" },
     { name: "rgb", color: "" },
   ];
+
   const newColor = new THREE.Color(props.color)
 
   if (props.activeEl !== "hidden") {
@@ -94,14 +95,15 @@ export default function Headset(props) {
           </group>
 
           {/* microphone */}
-          <group visible={false}>
-            <mesh geometry={nodes.Plane.geometry} material={materials.micplastic} position={[0.81, -1.55, 0.8]} rotation={[Math.PI / 2, 0, 0]} />
-            <mesh geometry={nodes.BezierCurve004.geometry} material={materials.microphone2} position={[0.81, -1.57, 0.85]} />
-            <group position={[-0.12, -1.89, 1.44]} rotation={[0, 0, -Math.PI / 2]}>
-              <mesh geometry={nodes.Circle014.geometry} material={materials.micplastic} />
-              <mesh geometry={nodes.Circle014_1.geometry} material={materials.rgb} material-color={colorCustomizables[8].color} />
-            </group>
-          </group>
+          {props.mic && (
+            <group>
+              <mesh geometry={nodes.Plane.geometry} material={materials.micplastic} position={[0.81, -1.55, 0.8]} rotation={[Math.PI / 2, 0, 0]} />
+              <mesh geometry={nodes.BezierCurve004.geometry} material={materials.microphone2} position={[0.81, -1.57, 0.85]} />
+              <group position={[-0.12, -1.89, 1.44]} rotation={[0, 0, -Math.PI / 2]}>
+                <mesh geometry={nodes.Circle014.geometry} material={materials.micplastic} />
+                <mesh geometry={nodes.Circle014_1.geometry} material={materials.rgb} material-color={colorCustomizables[8].color} />
+              </group>
+            </group>)}
         </group>
 
         {/* headpart */}

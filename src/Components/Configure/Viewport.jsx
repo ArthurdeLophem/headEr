@@ -15,6 +15,7 @@ export default function Viewport() {
     const [activeEl, setActiveEl] = useState("hidden");
     const [title, setTitle] = useState("hover over a headphone part to start");
     const [companyPic, setCompanyPic] = useState(null);
+    const [mic, setMic] = useState(false);
 
     //props handling
     const chooseTitle = (e) => {
@@ -28,6 +29,9 @@ export default function Viewport() {
     }
     const chooseCompanyPic = (newPicture) => {
         setCompanyPic(newPicture)
+    }
+    const chooseMicState = (newMic) => {
+        setMic(newMic)
     }
 
     return <>
@@ -58,13 +62,13 @@ export default function Viewport() {
             </Center>
 
             <Suspense>
-                <Headset companyPic={companyPic} chooseTitle={chooseTitle} color={color} activeEl={activeEl} chooseColor={chooseColor} chooseActiveEl={chooseActiveEl} chooseCompanyPic={chooseCompanyPic} />
+                <Headset companyPic={companyPic} chooseTitle={chooseTitle} color={color} activeEl={activeEl} mic={mic} chooseMicState={chooseMicState} chooseColor={chooseColor} chooseActiveEl={chooseActiveEl} chooseCompanyPic={chooseCompanyPic} />
                 <ContactShadows resolution={1024} frames={1} position={[0, -1.16, 0]} scale={15} blur={0.5} opacity={1} far={20} />
             </Suspense>
             <Lights />
         </Canvas>
 
         <h1 className="title">{title}</h1>
-        <CustomizePanel companyPic={companyPic} color={color} activeEl={activeEl} chooseColor={chooseColor} chooseActiveEl={chooseActiveEl} chooseCompanyPic={chooseCompanyPic} />
+        <CustomizePanel companyPic={companyPic} color={color} activeEl={activeEl} chooseColor={chooseColor} mic={mic} chooseMicState={chooseMicState} chooseActiveEl={chooseActiveEl} chooseCompanyPic={chooseCompanyPic} />
     </>
 }
