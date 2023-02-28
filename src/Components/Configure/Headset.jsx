@@ -19,26 +19,18 @@ export default function Headset(props) {
     { name: "rgb", color: "" },
   ];
 
-  const newColor = new THREE.Color(props.color)
-
   if (props.activeEl !== "hidden") {
     const targetEl = colorCustomizables.find((el) => el.name == props.activeEl)
-    targetEl.color = newColor
+    let newColor = new THREE.Color(props.color)
+    targetEl.color = newColor.convertLinearToSRGB()
   }
 
   const handleIncome = (e) => {
     const targetEl = colorCustomizables.find((el) => el.name === e.object.material.name)
-
     if (targetEl) {
-      if (e.object.material.name == "pattern") {
-        props.chooseActiveEl("rgb")
-        props.chooseColor(materials.rgb.color)
-      }
-      else {
-        targetEl.color = { r: Math.round(e.object.material.color.r * 255), g: Math.round(e.object.material.color.g * 255), b: Math.round(e.object.material.color.b * 255) }
-        props.chooseActiveEl(targetEl.name)
-        props.chooseColor(targetEl.color)
-      }
+      targetEl.color = { r: Math.trunc(e.object.material.color.r * 255), g: Math.trunc(e.object.material.color.g * 255), b: Math.trunc(e.object.material.color.b * 255) }
+      props.chooseActiveEl(targetEl.name)
+      props.chooseColor(targetEl.color)
     } else {
       props.chooseActiveEl("hidden")
     }
@@ -131,7 +123,7 @@ export default function Headset(props) {
             <mesh geometry={nodes.Bolt005.geometry} material={materials.metalics} material-color={colorCustomizables[0].color} position={[1.57, 0.27, -0.09]} rotation={[0, 0, 2.13]} />
           </group>
         </group>
-      </group >
+      </group>
     </group>
   )
 }

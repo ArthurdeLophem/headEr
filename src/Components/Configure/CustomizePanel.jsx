@@ -21,9 +21,6 @@ export default function CustomizePanel(props) {
     const handleMic = (e) => {
         props.chooseMicState(e.target.checked)
     }
-    const col = (e) => {
-        props.chooseColor(e)
-    }
 
     if (props.activeEl == "drivers") {
         drivers = true
@@ -37,7 +34,7 @@ export default function CustomizePanel(props) {
                 <p>choose your {props.activeEl} color:</p>
                 <p onClick={handleOut} className=" font-bold cursor-pointer">X</p>
             </div>
-            <RgbaColorPicker onChange={col} className="picker mb-5" />
+            <RgbaColorPicker onChange={props.chooseColor} className="picker mb-5" />
 
             {drivers && (
                 <div className="flex flex-col items-center gap-8 mb-4">
