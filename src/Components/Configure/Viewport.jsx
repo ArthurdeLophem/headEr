@@ -15,6 +15,7 @@ export default function Viewport() {
     const [title, setTitle] = useState("hover over a headphone part to start");
     const [companyPic, setCompanyPic] = useState(null);
     const [mic, setMic] = useState(false);
+    let active = true;
 
     //props handling
     const chooseTitle = (e) => {
@@ -34,6 +35,12 @@ export default function Viewport() {
         setMic(newMic)
     }
 
+    if (activeEl !== "hidden") {
+        active = false
+    } else {
+        active = true
+    }
+
     return <>
         <Canvas className='viewport' dpr={1} camera={{ position: [10, 20, 20], zoom: 6.5 }} gl={{ preserveDrawingBuffer: true }}>
             <Perf deepAnalyze={true} overClock={true} matrixUpdate={true} position={"top-left"} />
@@ -49,7 +56,7 @@ export default function Viewport() {
                 dampingFactor={0.1}
                 minPolarAngle={Math.PI / 3}
                 maxPolarAngle={Math.PI / 3}
-                autoRotate={true}
+                autoRotate={active}
                 autoRotateSpeed={1}
                 makeDefault
             />
