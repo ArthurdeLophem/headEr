@@ -1,5 +1,4 @@
 import { Canvas } from '@react-three/fiber'
-import { RGBELoader } from 'three-stdlib'
 import { Effects } from './Effects';
 import { Center, OrbitControls, ContactShadows } from '@react-three/drei'
 import { Perf } from 'r3f-perf';

@@ -1,6 +1,8 @@
 import { RgbaColorPicker } from "react-colorful";
 
 export default function CustomizePanel(props) {
+    let drivers = false
+
     const handleImage = (e) => {
         const files = e.target.files[0];
         if (files) {
@@ -19,8 +21,10 @@ export default function CustomizePanel(props) {
     const handleMic = (e) => {
         props.chooseMicState(e.target.checked)
     }
+    const col = (e) => {
+        props.chooseColor(e)
+    }
 
-    let drivers = false
     if (props.activeEl == "drivers") {
         drivers = true
     } else {
@@ -33,13 +37,13 @@ export default function CustomizePanel(props) {
                 <p>choose your {props.activeEl} color:</p>
                 <p onClick={handleOut} className=" font-bold cursor-pointer">X</p>
             </div>
-            <RgbaColorPicker onChange={props.chooseColor} className="picker mb-5" />
+            <RgbaColorPicker onChange={col} className="picker mb-5" />
 
             {drivers && (
                 <div className="flex flex-col items-center gap-8 mb-4">
                     <div className="flex flex-col items-center gap-8 mb-4">
                         <div className="flex gap-4">
-                            <label for="scales">microphone</label>
+                            <label htmlFor="scales">microphone</label>
                             <input type="checkbox" onChange={handleMic} checked={props.mic} id="scales" name="scales" />
                         </div>
                     </div>
@@ -52,9 +56,8 @@ export default function CustomizePanel(props) {
                             name="company_pic"
                             accept=".jpg, .jpeg, .png, svg" />
                     </div>
-                    {props.companyPic !== null && (<img src={props.companyPic} alt="" />)}
+                    {props.companyPic !== null && (<img className="w-24 h-24" src={props.companyPic} alt="custom company logo" />)}
                 </div>
-
             )}
         </div>
     </>
