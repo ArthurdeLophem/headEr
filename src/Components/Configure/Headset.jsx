@@ -4,10 +4,13 @@ Command: npx gltfjsx@6.1.4 public/assets/models/HeadsetOpti.glb --transform
 */
 import { useHeadphoneStore } from './HFStore';
 import { useGLTF, Image } from '@react-three/drei'
+import { useThree } from '@react-three/fiber';
 import * as THREE from 'three'
+import gsap from "gsap";
 
 export default function Headset(props) {
   const { nodes, materials } = useGLTF('/assets/models/Headset.glb')
+  const camera = useThree(state => state.camera)
   const colorCustomizables = [
     { name: "metalics", color: "" },
     { name: "cushions", color: "" },
@@ -34,6 +37,17 @@ export default function Headset(props) {
       targetEl.color = { r: Math.trunc(e.object.material.color.r * 255), g: Math.trunc(e.object.material.color.g * 255), b: Math.trunc(e.object.material.color.b * 255) }
       hfStore.chooseActiveEl(targetEl.name)
       hfStore.chooseColor(targetEl.color)
+      const targetCenter = e.point
+      const targetSize = e.object.geometry.boundingBox.getSize(new THREE.Vector3())
+      gsap.to(camera.position, {
+        duration: 1,
+        x: targetCenter.x + targetSize.x * 7,
+        y: targetCenter.y + targetSize.y * 7,
+        z: targetCenter.z + targetSize.z * 7,
+        onUpdate: () => {
+          camera.lookAt(targetCenter);
+        }
+      });
     } else {
       hfStore.chooseActiveEl("hidden")
     }
@@ -56,6 +70,12 @@ export default function Headset(props) {
   const handleMissed = () => {
     hfStore.chooseActiveEl("hidden")
     hfStore.chooseTitle(`hover over a headphone part to start`)
+    gsap.to(camera.position, {
+      duration: 1,
+      x: 10,
+      y: 20,
+      z: 20,
+    });
   }
 
   return (
@@ -75,7 +95,6 @@ export default function Headset(props) {
 
         {/* drivers */}
         <group>
-
           <mesh castShadow receiveShadow geometry={nodes.Circle.geometry} material={materials.drivers} material-color={colorCustomizables[4].color} position={[0.94, -1.08, 0]} rotation={[0, 0, 1.08]} />
           <mesh geometry={nodes.Circle005.geometry} material={materials.rgb} material-color={colorCustomizables[8].color} position={[0.93, -1.03, 0]} rotation={[0, 0, 1.08]} />
           <mesh geometry={nodes.Plane002.geometry} material={materials.pattern} position={[1.29, -1.27, 0]} rotation={[0, 0, 1.08]} />
