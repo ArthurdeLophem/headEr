@@ -13,6 +13,7 @@ export default function Viewport() {
 
     // zustandStore
     const hfStore = useHeadphoneStore();
+    console.log(hfStore.Title)
 
     if (hfStore.ActiveEl !== "hidden") {
         active = false
@@ -54,7 +55,7 @@ export default function Viewport() {
             <Lights />
         </Canvas>
 
-        <h1 className="title">{hfStore.hfTitle}</h1>
+        <h1 className="title">{hfStore.Title}</h1>
         <CustomizePanel />
     </>
 }
