@@ -1,14 +1,15 @@
 import { Canvas } from '@react-three/fiber'
 import { Effects } from './Effects';
-import { Center, OrbitControls, ContactShadows } from '@react-three/drei'
+import { Center, OrbitControls, ContactShadows, PerformanceMonitor } from '@react-three/drei'
 import { Perf } from 'r3f-perf';
-import { Suspense } from 'react';
+import { Suspense, useState } from 'react';
 import { useHeadphoneStore } from './HFStore';
 import CustomizePanel from './CustomizePanel';
 import Headset from './Headset';
 import Lights from './Lights';
 
 export default function Viewport() {
+    const [dpr, setDpr] = useState(1);
     let active
 
     // zustandStore
@@ -21,7 +22,8 @@ export default function Viewport() {
     }
 
     return <>
-        <Canvas className='viewport' dpr={1} camera={{ position: [10, 20, 20], zoom: 6.5 }} gl={{ preserveDrawingBuffer: true }}>
+        <Canvas className='viewport' dpr={dpr} camera={{ position: [10, 20, 20], zoom: 6.5 }} gl={{ preserveDrawingBuffer: true }}>
+            <PerformanceMonitor flipflops={2} onIncline={() => setDpr(1.5)} onDecline={() => setDpr(0.7)} />
             <Perf deepAnalyze={true} minimal={true} overClock={true} matrixUpdate={true} position={"top-left"} />
             <color attach="background" args={['#2c2c33']} />
 
