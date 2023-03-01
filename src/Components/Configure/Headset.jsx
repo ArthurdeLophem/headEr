@@ -47,12 +47,10 @@ export default function Headset(props) {
 
   const handleIncome = (e) => {
     const targetEl = colorCustomizables.find((el) => el.name === e.object.material.name)
-
     if (targetEl) {
-
       if (e.object.material.name == "pattern") {
-        props.chooseActiveEl("rgb")
-        props.chooseColor(materials.rgb.color)
+        hfStore.chooseActiveEl("rgb")
+        hfStore.chooseColor(materials.rgb.color)
         camChange(e)
       } else {
         targetEl.color = { r: Math.trunc(e.object.material.color.r * 255), g: Math.trunc(e.object.material.color.g * 255), b: Math.trunc(e.object.material.color.b * 255) }
