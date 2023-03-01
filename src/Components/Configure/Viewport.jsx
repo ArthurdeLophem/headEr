@@ -22,7 +22,6 @@ export default function Viewport() {
     }
     const chooseColor = (e) => {
         setColor(`rgb(${e.r}, ${e.g}, ${e.b})`)
-        console.log(color)
     }
     const chooseActiveEl = (newActive) => {
         setActiveEl(newActive)
