@@ -13,7 +13,6 @@ export default function Viewport() {
 
     // zustandStore
     const hfStore = useHeadphoneStore();
-    console.log(hfStore.Title)
 
     if (hfStore.ActiveEl !== "hidden") {
         active = false

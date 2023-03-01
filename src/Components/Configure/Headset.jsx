@@ -31,23 +31,35 @@ export default function Headset(props) {
     targetEl.color = newColor.convertLinearToSRGB()
   }
 
+  const camChange = (e) => {
+    const targetCenter = e.point
+    const targetSize = e.object.geometry.boundingBox.getSize(new THREE.Vector3())
+    gsap.to(camera.position, {
+      duration: 1,
+      x: targetCenter.x + targetSize.x * 7,
+      y: targetCenter.y + targetSize.y * 7,
+      z: targetCenter.z + targetSize.z * 7,
+      onUpdate: () => {
+        camera.lookAt(targetCenter);
+      }
+    });
+  }
+
   const handleIncome = (e) => {
     const targetEl = colorCustomizables.find((el) => el.name === e.object.material.name)
+
     if (targetEl) {
-      targetEl.color = { r: Math.trunc(e.object.material.color.r * 255), g: Math.trunc(e.object.material.color.g * 255), b: Math.trunc(e.object.material.color.b * 255) }
-      hfStore.chooseActiveEl(targetEl.name)
-      hfStore.chooseColor(targetEl.color)
-      const targetCenter = e.point
-      const targetSize = e.object.geometry.boundingBox.getSize(new THREE.Vector3())
-      gsap.to(camera.position, {
-        duration: 1,
-        x: targetCenter.x + targetSize.x * 7,
-        y: targetCenter.y + targetSize.y * 7,
-        z: targetCenter.z + targetSize.z * 7,
-        onUpdate: () => {
-          camera.lookAt(targetCenter);
-        }
-      });
+
+      if (e.object.material.name == "pattern") {
+        props.chooseActiveEl("rgb")
+        props.chooseColor(materials.rgb.color)
+        camChange(e)
+      } else {
+        targetEl.color = { r: Math.trunc(e.object.material.color.r * 255), g: Math.trunc(e.object.material.color.g * 255), b: Math.trunc(e.object.material.color.b * 255) }
+        hfStore.chooseActiveEl(targetEl.name)
+        hfStore.chooseColor(targetEl.color)
+        camChange(e)
+      }
     } else {
       hfStore.chooseActiveEl("hidden")
     }
