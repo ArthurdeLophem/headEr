@@ -24,14 +24,12 @@ export default function Viewport() {
     return <>
         <Canvas className='viewport' dpr={dpr} camera={{ position: [10, 20, 20], zoom: 6.5 }} gl={{ preserveDrawingBuffer: true }}>
             <PerformanceMonitor flipflops={1} onIncline={() => setDpr(1.5)} onDecline={() => setDpr(0.7)} />
-            <Perf deepAnalyze={true} minimal={true} overClock={true} matrixUpdate={true} position={"top-left"} />
+            {/* <Perf deepAnalyze={true} minimal={true} overClock={true} matrixUpdate={true} position={"top-left"} /> */}
             <color attach="background" args={['#2c2c33']} />
 
             <Effects />
             <OrbitControls
-                zoomSpeed={0.25}
-                minZoom={2}
-                maxZoom={250}
+                enableZoom={false}
                 enablePan={true}
                 enableDamping={true}
                 dampingFactor={0.1}
