@@ -7,10 +7,12 @@ import { useGLTF, Image } from '@react-three/drei'
 import { useThree } from '@react-three/fiber';
 import * as THREE from 'three'
 import gsap from "gsap";
+import { Outliner } from './Outliner'
 
 export default function Headset(props) {
   const { nodes, materials } = useGLTF('/assets/models/Headset.glb')
   const camera = useThree(state => state.camera)
+  const hfStore = useHeadphoneStore();
   const colorCustomizables = [
     { name: "metalics", color: "" },
     { name: "cushions", color: "" },
@@ -22,8 +24,6 @@ export default function Headset(props) {
     { name: "fixers", color: "" },
     { name: "rgb", color: "" },
   ];
-
-  const hfStore = useHeadphoneStore();
 
   if (hfStore.ActiveEl !== "hidden") {
     const targetEl = colorCustomizables.find((el) => el.name == hfStore.ActiveEl)
@@ -65,6 +65,11 @@ export default function Headset(props) {
   }
 
   const handleHover = (e) => {
+    let data = e.object.geometry
+    data.position = e.object.position
+    data.rotation = e.object.rotation
+    hfStore.chooseActiveGeo(data)
+    console.log(data)
     if (colorCustomizables.find((el) => el.name === e.object.material.name)) {
       hfStore.chooseTitle(`customize your ${e.object.material.name}`)
     }
@@ -78,6 +83,7 @@ export default function Headset(props) {
   }
 
   const handleMissed = () => {
+    hfStore.chooseActiveGeo(null)
     hfStore.chooseActiveEl("hidden")
     hfStore.chooseTitle(`hover over a headphone part to start`)
     gsap.to(camera.position, {
@@ -102,6 +108,11 @@ export default function Headset(props) {
         onClick={handleIncome}
         onPointerMissed={handleMissed}
         position={[0, 1, 0]} rotation={[-1.5, 0, 0]} >
+
+        {/* outline */}
+        {hfStore.ActiveGeo && (
+          <Outliner />
+        )}
 
         {/* drivers */}
         <group>
@@ -137,10 +148,8 @@ export default function Headset(props) {
           <mesh geometry={nodes.Circle006.geometry} material={materials.fixers} material-color={colorCustomizables[7].color} position={[1.92, 0.09, -0.01]} />
           <mesh geometry={nodes.Circle007.geometry} material={materials.headrest} material-color={colorCustomizables[2].color} position={[1.74, 0.11, -0.01]} rotation={[0, 0, 0.58]} />
           <mesh geometry={nodes.BezierCurve001.geometry} material={materials.metalics} material-color={colorCustomizables[0].color} position={[1.92, 0.1, -0.01]} />
-          <group position={[1.56, 0.39, -0.01]} rotation={[-Math.PI / 2, 0, 0]}>
-            <mesh geometry={nodes.BezierCurve002_1.geometry} material={materials.headrest} material-color={colorCustomizables[2].color} />
-            <mesh geometry={nodes.BezierCurve002_2.geometry} material={materials.headrest} material-color={colorCustomizables[2].color} />
-          </group>
+          <mesh geometry={nodes.BezierCurve002_1.geometry} material={materials.headrest} material-color={colorCustomizables[2].color} position={[1.56, 0.39, -0.01]} rotation={[-Math.PI / 2, 0, 0]} />
+          <mesh geometry={nodes.BezierCurve002_2.geometry} material={materials.headrest} material-color={colorCustomizables[2].color} position={[1.56, 0.39, -0.01]} rotation={[-Math.PI / 2, 0, 0]} />
 
           {/* backPlate Sockets */}
           <mesh geometry={nodes.Circle004.geometry} material={materials.sockets} material-color={colorCustomizables[5].color} position={[0.94, -1.08, 0]} rotation={[0, 0, 1.08]} />
