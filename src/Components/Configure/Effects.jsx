@@ -9,8 +9,7 @@ export const Effects = (...props) => {
     console.log(hfStore.ActiveGeo)
 
     return (
-        <EffectComposer disableNormalPass>
-            {/* <SSR {...props} /> */}
+        <EffectComposer depthBuffer={true} disableNormalPass={false} stencilBuffer={true} autoClear={true} resolutionScale={1} multisampling={8}>
             <Bloom luminanceThreshold={0} mipmapBlur luminanceSmoothing={0} intensity={0.5} />
             <LUT lut={texture} />
         </EffectComposer>
