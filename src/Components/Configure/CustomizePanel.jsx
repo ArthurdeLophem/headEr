@@ -22,7 +22,6 @@ export default function CustomizePanel(props) {
     const handleOut = () => {
         hfStore.chooseActiveEl("hidden")
     }
-
     const handleMic = (e) => {
         hfStore.chooseMic(e.target.checked)
     }
@@ -32,8 +31,7 @@ export default function CustomizePanel(props) {
     } else {
         drivers = false
     }
-
-    return <>
+    return (
         <div className={`panel ${hfStore.ActiveEl}`}>
             <div className={`w-full flex justify-between`}>
                 <p>choose your {hfStore.ActiveEl} color:</p>
@@ -62,5 +60,5 @@ export default function CustomizePanel(props) {
                 </div>
             )}
         </div>
-    </>
+    )
 }

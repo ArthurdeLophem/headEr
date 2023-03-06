@@ -3,9 +3,6 @@ import { EffectComposer, SSR, Bloom, LUT } from '@react-three/postprocessing'
 import { useLoader } from '@react-three/fiber'
 import { LUTCubeLoader } from 'postprocessing'
 
-//components
-import { useHeadphoneStore } from './HFStore'
-
 export const Effects = (...props) => {
     const texture = useLoader(LUTCubeLoader, '/assets/models/cube.cube')
 

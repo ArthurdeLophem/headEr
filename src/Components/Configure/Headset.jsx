@@ -97,6 +97,7 @@ export default function Headset(props) {
 
   return (
     <group>
+      {/* company-picture */}
       {hfStore.CompanyPic !== null && (
         <group>
           <Image url={hfStore.CompanyPic} scale={0.5} transparent opacity={1} rotation={[0.23, 1.07, -1.73]} position={[1.54, 0.95, 1.39]} />
@@ -111,7 +112,8 @@ export default function Headset(props) {
         </group>
       )}
 
-      <group  {...props} dispose={null}
+      {/* headset-model */}
+      <group {...props} dispose={null}
         onPointerOver={handleHover} onPointerOut={handleOut}
         onClick={handleIncome}
         onPointerMissed={handleMissed}
@@ -153,7 +155,7 @@ export default function Headset(props) {
           <mesh geometry={nodes.BezierCurve002_1.geometry} material={materials.headrest} material-color={colorCustomizables[2].color} position={[1.56, 0.39, -0.01]} rotation={[-Math.PI / 2, 0, 0]} />
           <mesh geometry={nodes.BezierCurve002_2.geometry} material={materials.headrest} material-color={colorCustomizables[2].color} position={[1.56, 0.39, -0.01]} rotation={[-Math.PI / 2, 0, 0]} />
 
-          {/* backPlate Sockets */}
+          {/* backplate-sockets */}
           <mesh geometry={nodes.Circle004.geometry} material={materials.sockets} material-color={colorCustomizables[5].color} position={[0.94, -1.08, 0]} rotation={[0, 0, 1.08]} />
 
           {/* bolts */}

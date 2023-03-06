@@ -2,7 +2,6 @@
 import { Environment, Lightformer, } from '@react-three/drei'
 
 export default function Lights() {
-
     return (
         <group>
             <hemisphereLight intensity={0.5} />
@@ -20,7 +19,5 @@ export default function Lights() {
                 <Lightformer form="ring" color="red" intensity={10} scale={2} position={[10, 5, 10]} onUpdate={(self) => self.lookAt(0, 0, 0)} />
             </Environment>
         </group >
-
-
     )
 }

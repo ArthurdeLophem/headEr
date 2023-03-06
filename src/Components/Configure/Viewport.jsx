@@ -3,7 +3,6 @@ import { Center, OrbitControls, ContactShadows, PerformanceMonitor } from '@reac
 import { Canvas } from '@react-three/fiber';
 import { Suspense, useState } from 'react';
 import { Effects } from './Effects';
-import { Perf } from 'r3f-perf';
 
 //components
 import { useHeadphoneStore } from './HFStore';
@@ -27,7 +26,6 @@ export default function Viewport() {
     return <>
         <Canvas className='viewport' dpr={dpr} camera={{ position: [10, 20, 20], zoom: 6.5 }} gl={{ preserveDrawingBuffer: true }}>
             <PerformanceMonitor flipflops={1} onIncline={() => setDpr(1.5)} onDecline={() => setDpr(0.7)} />
-            {/* <Perf deepAnalyze={true} minimal={true} overClock={true} matrixUpdate={true} position={"top-left"} /> */}
             <color attach="background" args={['#2c2c33']} />
 
             <Effects />
@@ -40,8 +38,7 @@ export default function Viewport() {
                 maxPolarAngle={Math.PI / 3}
                 autoRotate={active}
                 autoRotateSpeed={1}
-                makeDefault
-            />
+                makeDefault />
 
             <Center>
                 <mesh scale={6} rotation={[-Math.PI / 2, 0, Math.PI / 2.5]}>
