@@ -43,7 +43,7 @@ export default function Viewport() {
             <Center>
                 <mesh scale={6} rotation={[-Math.PI / 2, 0, Math.PI / 2.5]}>
                     <ringGeometry args={[0.95, 1.1, 4]} />
-                    <meshStandardMaterial color="red" roughness={0} />
+                    <meshStandardMaterial emissive="red" emissiveIntensity={2} toneMapped={false} />
                 </mesh>
             </Center>
 
