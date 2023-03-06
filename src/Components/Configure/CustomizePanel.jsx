@@ -1,4 +1,7 @@
+//packages
 import { RgbaColorPicker } from "react-colorful";
+
+//components
 import { useHeadphoneStore } from './HFStore';
 
 export default function CustomizePanel(props) {

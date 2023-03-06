@@ -1,6 +1,9 @@
-import * as THREE from 'three'
+//packages
 import { extend } from '@react-three/fiber'
 import { shaderMaterial } from '@react-three/drei'
+import * as THREE from 'three'
+
+//components
 import { useHeadphoneStore } from './HFStore'
 
 const HullMaterial = shaderMaterial(

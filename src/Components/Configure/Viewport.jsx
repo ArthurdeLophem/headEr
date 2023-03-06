@@ -1,8 +1,11 @@
-import { Canvas } from '@react-three/fiber'
-import { Effects } from './Effects';
+//packages
 import { Center, OrbitControls, ContactShadows, PerformanceMonitor } from '@react-three/drei'
-import { Perf } from 'r3f-perf';
+import { Canvas } from '@react-three/fiber';
 import { Suspense, useState } from 'react';
+import { Effects } from './Effects';
+import { Perf } from 'r3f-perf';
+
+//components
 import { useHeadphoneStore } from './HFStore';
 import CustomizePanel from './CustomizePanel';
 import Headset from './Headset';

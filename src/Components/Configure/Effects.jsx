@@ -1,12 +1,13 @@
-import { useLoader } from '@react-three/fiber'
+//packages
 import { EffectComposer, SSR, Bloom, LUT } from '@react-three/postprocessing'
+import { useLoader } from '@react-three/fiber'
 import { LUTCubeLoader } from 'postprocessing'
+
+//components
 import { useHeadphoneStore } from './HFStore'
 
 export const Effects = (...props) => {
     const texture = useLoader(LUTCubeLoader, '/assets/models/cube.cube')
-    const hfStore = useHeadphoneStore();
-    console.log(hfStore.ActiveGeo)
 
     return (
         <EffectComposer depthBuffer={true} disableNormalPass={false} stencilBuffer={true} autoClear={true} resolutionScale={1} multisampling={8}>
